@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Header from './Component/Header';
+import Sidebar from './Component/Sidebar';
+import AboutUsSection from './Component/AboutUsSection';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [activeScreen, setActiveScreen] = useState('About Us');
+
+	return (
+		<div className='bg-violet-50 flex flex-col'>
+			<div className=''>
+				<Header />
+			</div>
+			<div className='flex flex-row'>
+				<div className='flex flex-[0.2]'>
+					<Sidebar
+						activeScreen={activeScreen}
+						setActiveScreen={setActiveScreen}
+					/>
+				</div>
+				<div className='flex flex-[0.8]'>
+					{activeScreen === 'About Us' && <AboutUsSection />}
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default App;
